@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.tag {
+  padding: 0.5em 0.8em;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.tag.green {
+  background-color: green;
+}
+
+.tag.yellow {
+  background-color: yellow;
+  color: black; /* Ensure text is readable on yellow background */
+}
+
+.tag.red {
+  background-color: red;
+}

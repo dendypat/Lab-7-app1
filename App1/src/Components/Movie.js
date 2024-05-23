@@ -1,15 +1,26 @@
 import React from "react";
 import "./Movie.css"
-const ImageURL = 'https://image.tmdb.org/t/p/w500/';
 
-function Movie({poster_path,title,overview, vote_average})
-{
+const Movie = ({title, poster_path, vote_average, overview}) => {
+    const posterURL = poster_path
+    ? `https://image.tmdb.org/t/p/w500${poster_path}`
+    : 'https://image.tmdb.org/t/p/w500/'; // Replace with the path to your generic image
+
+  const getVoteClass = (vote) => {
+    if (vote > 7) {
+      return 'green';
+    } else if (vote >= 5) {
+      return 'yellow';
+    } else {
+      return 'red';
+    }
+  };
     return (
         <div className="movie">
-            <img src={ImageURL + poster_path} alt={title}></img>
+            <img src={posterURL} alt={title}></img>
             <div className="movie-info">
                 <h3>{title}</h3>
-                <span>{vote_average}</span>
+                <span className={`tag ${getVoteClass(vote_average)}`}>{vote_average}</span>
             </div>
             <div className="movie-overview">
                 <h2>Overview:</h2>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import APIKey from './config';
 import Movie from './Components/Movie';
@@ -11,20 +11,25 @@ function App() {
   const [movieResults, setMovieResults] = useState([]);
 
   useEffect(() => {
-    fetch(`${APIURL}${APIKey}`)
-    .then((resp) => resp.json())
-    .then((data) => {
-        setMovieResults(data.results);
-      });
+    fetchMovies(`${APIURL}${APIKey}`);
   }, []);
+
+  const fetchMovies = (url) => {
+    fetch(url)
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error('Network response was not ok ' + resp.statusText);
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setMovieResults(data.results || []);
+      });
+  };
 
   const handleOnSubmit = (searchTerm) => {
     if (searchTerm) {
-      fetch(`${SearchURL}${APIKey}&query=${searchTerm}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-          setMovieResults(data.results);
-        });
+      fetchMovies(`${SearchURL}${APIKey}&query=${searchTerm}`);
     }
   };
 

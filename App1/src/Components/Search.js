@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 
 const Search = ({ onSubmit }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ const Search = ({ onSubmit }) => {
         value={searchTerm}
         onChange={handleOnChange}
       />
+      <button type="submit">Search</button>
     </form>
   );
 };
