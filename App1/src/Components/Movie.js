@@ -15,6 +15,7 @@ const Movie = ({title, poster_path, vote_average, overview}) => {
       return 'red';
     }
   };
+  
     return (
         <div className="movie">
             <img src={posterURL} alt={title}></img>

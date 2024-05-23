@@ -14,6 +14,7 @@ function App() {
     fetchMovies(`${APIURL}${APIKey}`);
   }, []);
 
+  
   const fetchMovies = (url) => {
     fetch(url)
       .then((resp) => {
